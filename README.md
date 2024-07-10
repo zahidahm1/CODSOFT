@@ -1,2 +1,2 @@
 # CODSOFT
-Web Develo[per Intern at CODSOFT
+Web Developer Intern at CODSOFT
