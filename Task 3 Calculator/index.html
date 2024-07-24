@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+</html>
+
+<head>
+    <meta charset="UFT-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CALCULATOR</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="asset/favicon.png">
+
+</head>
+
+<body>
+    <div id="calc">
+        <!-- <input type="text" id="display" disabled> -->
+        <div class="container">
+            <div class="box">
+                <div class="left">
+                    <h1>Simple Calculator</h1>
+                    <h3>A simple calculator allows users to perform basic arithmetic operations like addition,
+                        subtraction, multiplication, and division, offering quick and easy calculations with minimal
+                        functionality.</h3>
+                </div>
+
+                <div class="right">
+                    <input type="text" id="display" disabled>
+                    <div>
+                        <button class="btn" onclick="clearDisplay()">C</button>
+                        <div class="right-move">
+
+                            <button class="btn" onclick="appendToDisplay('7')">7</button>
+                            <button class="btn" onclick="appendToDisplay('8')">8</button>
+                            <button class="btn" onclick="appendToDisplay('9')">9</button>
+                            <button class="btn" onclick="appendToDisplay('/')">/</button>
+                        </div>
+                    </div>
+                    <div class="right-move">
+                        <button class="btn" onclick="appendToDisplay('4')">4</button>
+                        <button class="btn" onclick="appendToDisplay('5')">5</button>
+                        <button class="btn" onclick="appendToDisplay('6')">6</button>
+                        <button class="btn" onclick="appendToDisplay('*')">*</button>
+                    </div>
+                    <div class="right-move">
+                        <button class="btn" onclick="appendToDisplay('1')">1</button>
+                        <button class="btn" onclick="appendToDisplay('2')">2</button>
+                        <button class="btn" onclick="appendToDisplay('3')">3</button>
+                        <button class="btn" onclick="appendToDisplay('-')">-</button>
+                    </div>
+                    <div class="right-move">
+                        <button class="btn" onclick="appendToDisplay('0')">0</button>
+                        <button class="btn" onclick="appendToDisplay('.')">.</button>
+                        <button class="btn" onclick="calculate()">=</button>
+                        <button class="btn" onclick="appendToDisplay('+')">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer">
+                <p>Copyright &copy; 2024; Designed By <span class="Designer">Zahid Ahmad</span> </p>
+            </div>
+        
+        </footer>
+    </div>
+<!-- -----------------------Footer---------------------- -->
+
+<!-- ------------------JS------------------- -->
+    <script>
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = ' ';
+        }
+
+        function calculate() {
+            const display = document.getElementById('display');
+            try {
+                display.value = eval(display.value);
+            } catch (error) {
+                display.value = 'Error';
+            }
+        }
+
+        document.addEventListener('keydown', function (event) {
+            const key = event.key;
+            const operators = ['+', '-', '*', '/'];
+
+            if (!isNaN(key) || operators.includes(key) || key === '.') {
+                appendToDisplay(key);
+            } else if (key === 'Enter') {
+                calculate();
+            } else if (key === 'Backspace') {
+                display.value = display.value.slice(0, -1);
+            } else if (key.toLowerCase() === 'c') {
+                clearDisplay();
+            }
+        });
+    </script>
+</body>
+
+</html>
